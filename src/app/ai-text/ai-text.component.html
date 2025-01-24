@@ -1,0 +1,31 @@
+<form #gptform="ngForm">
+    <h2 class="text-center mt-5 unique-heading">Ayush GPT</h2>
+  
+    <h2 class="text-center mt-5 unique-heading">What can I help with?</h2>
+    <div class="container mt-4">
+      <div class="form-group custom-textarea-container">
+        <textarea class="form-control custom-textarea" id="question" name="question" [(ngModel)]="getinput" rows="8" placeholder="Ask me Anything" required></textarea>
+      </div>
+      <div class="button-container">
+        <button type="submit" class="btn custom-button" (click)="onSubmit(gptform)">Submit</button>
+        <button type="button" class="btn custom-button clear-button" (click)="onClear()">Clear</button>
+      </div>
+
+      <br>
+
+      <div *ngIf="isSubmitting"  class="spinner-border text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      
+      <div class="form-group custom-textarea-container position-relative">
+        <textarea class="form-control custom-textarea" id="answer" name="answer" rows="4" placeholder="GPT Answer" readonly>{{output}}</textarea>
+        <button type="button" class="btn custom-button copy-button" (click)="oncopy()">{{copyButtonText}}</button>
+      </div>
+      <br>
+      <h3>Download as PDF or Word</h3>
+      <div class="button-container">
+        <button type="button" class="btn custom-button" (click)="downloadAsPDF()">PDF</button>
+        <button type="button" class="btn custom-button" (click)="downloadAsWord()">Word</button>
+      </div>
+    </div>
+  </form>
